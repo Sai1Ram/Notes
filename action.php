@@ -66,7 +66,7 @@ if (isset($_POST['signin'])) {
     }
 }
 elseif(isset($_POST['login'])){
-    $useremail = $_POST["email"];
+    $useremail = strip_tags(trim($_POST["email"]));
     $password = strip_tags($_POST["password"]);
     $password = $_POST["password"];
     $msg = "";
