@@ -15,13 +15,13 @@ if (isset($_POST['signin'])) {
             if (!preg_match('/[^a-zA-Z\.\s]/', $username)) {
                 $username_valid = true;
             } else {
-                $mag .= "Name can contain only alphabate<br>";
+                $msg .= "Name can contain only alphabate<br>";
             }
         } else {
-            $mag .= "Length of the name is should be greater than 2 and less than 30<br>";
+            $msg .= "Length of the name is should be greater than 2 and less than 30<br>";
         }
     } else {
-        $mag .= "Name can not be blank<br>";
+        $msg .= "Name can not be blank<br>";
     }
     if (!empty($useremail)) {
         if (filter_var($useremail, FILTER_VALIDATE_EMAIL)) {
@@ -33,20 +33,20 @@ if (isset($_POST['signin'])) {
                 $useremail_valid = true;
             }
         } else {
-            $mag .= "Enter a valid Email<br>";
+            $msg .= "Enter a valid Email<br>";
         }
     } else {
-        $mag .= "Email can not be blank<br>";
+        $msg .= "Email can not be blank<br>";
     }
     if (!empty($password)) {
         if (strlen($password) > 3 && strlen($password) < 15) {
 
             $password_valid = true;
         } else {
-            $mag .= "Password should not be less than 8 or greater than 15";
+            $msg .= "Password should not be less than 8 or greater than 15";
         }
     } else {
-        $mag .= "password can not be blank<br>";
+        $msg .= "password can not be blank<br>";
     }
 
 
@@ -58,7 +58,8 @@ if (isset($_POST['signin'])) {
         $msg .= "Your Registration is completed successfully";
         session_start();
         $_SESSION["user"] = $useremail;
-        header("Location: home.php?msg" . $msg);
+        $_SESSION["user-name"] = $username;
+        header("Location: index.php?msg" . $msg);
         // header("Location: /Notes/Sign-in.php?msg=" . $msg);
 
     } else {
@@ -68,7 +69,7 @@ if (isset($_POST['signin'])) {
 elseif(isset($_POST['login'])){
     $useremail = strip_tags(trim($_POST["email"]));
     $password = strip_tags($_POST["password"]);
-    $password = $_POST["password"];
+    // $password = $_POST["password"];
     $msg = "";
     $query = "SELECT * FROM `users` WHERE `useremail` = '$useremail'";
     $result = mysqli_query($conn, $query);
@@ -81,7 +82,7 @@ elseif(isset($_POST['login'])){
             session_start();
             $_SESSION["user"] = $useremail;
             $_SESSION["user-name"] = $row['username'];
-            header("Location: home.php");
+            header("Location: index.php");
         }else{
             $msg .="Incorrect password";
         }
@@ -116,9 +117,9 @@ elseif(isset($_POST['submit'])){
         $query = "INSERT INTO `notes` (`useremail`, `title`, `description`) VALUES ('$useremail', '$title', '$description')";
         $result = mysqli_query($conn, $query) or die(mysqli_error(($conn)));
         $msg .= "successfully inserted";
-        header('Location: home.php?msg='.$msg);
+        header('Location: index.php?msg='.$msg);
     }else{
-        header('Location: home.php?msg='.$msg);
+        header('Location: index.php?msg='.$msg);
     }
 }
 
@@ -142,9 +143,9 @@ elseif(isset($_POST['update'])){
         $query = "UPDATE `notes` SET `title` = '$updated_title', `description` = '$updated_description' WHERE `sl.no` ='$id' ";
         $result = mysqli_query($conn, $query) or die(mysqli_error(($conn)));
         $msg .= "successfully inserted";
-        header('Location: home.php?msg='.$msg);
+        header('Location: index.php?msg='.$msg);
     }else{
-        header('Location: home.php?msg='.$msg);
+        header('Location: index.php?msg='.$msg);
     }
 }
 elseif(isset($_POST['delete'])){
@@ -157,7 +158,7 @@ elseif(isset($_POST['delete'])){
     }else{
         $msg .="Can not delete now try after some time";
     }
-    header('Location: home.php?msg'.$msg);
+    header('Location: index.php?msg'.$msg);
     }
 
 ?>

@@ -46,7 +46,7 @@
   height: 60%;
 }
 
-.home {
+.index {
   transition: all 1s ease-in-out;
   width: 100%;
   background-color: #2ec194;
@@ -132,7 +132,7 @@
   padding: 0.5rem;
 }
 
-.home span {
+.index span {
   color: red;
 }
 
@@ -272,7 +272,7 @@
   height: 65%;
 }
 
-.home, .editor{
+.index, .editor{
   height: 100%;
 }
 

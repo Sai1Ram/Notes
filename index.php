@@ -14,7 +14,7 @@ if ($usersemail) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="index.css">
     <title>Document</title>
     <style>
         .userImg {
@@ -29,7 +29,7 @@ if ($usersemail) {
             <?php require 'nav.php'; ?>
         </div>
         <div class="right">
-            <div class="home" id="home">
+            <div class="index" id="index">
                 <span style=<?php if (isset($_GET["msg"])) echo "display:block;";
                             else echo "display:none;"; ?> class="error">
                     <?php if (isset($_GET["msg"])) echo $_GET["msg"]; ?>
@@ -119,7 +119,7 @@ if ($usersemail) {
         function selected() {
             let select = document.getElementById("sorting");
             let selected = select.options[select.selectedIndex].text;
-            window.location = `./home.php?sort=${selected}`;
+            window.location = `./index.php?sort=${selected}`;
         }
         for (let i = 0; i < card.length; i++) {
             card[i].addEventListener("click", function() {

@@ -8,7 +8,7 @@
 </div>
 
 <div class="icon">
-    <a href="home.php"><span class="material-symbols-outlined" id="homeicon">
+    <a href="index.php"><span class="material-symbols-outlined" id="homeicon">
         home
     </span></a>
 
